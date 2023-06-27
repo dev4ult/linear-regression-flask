@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ## Run Application
 
-you are ready to go and ready to run the app
+you are ready to go to run the app
 
 ```
 npm run app
