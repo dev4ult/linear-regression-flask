@@ -1,3 +1,9 @@
+cloning application
+
+```
+git clone https://github.com/dev4ult/linear-regression-flask.git
+```
+
 ## Activate the virtual environment
 
 before create a virtual environment to run the app, you have to activate the local environment to run the virtualenv library
