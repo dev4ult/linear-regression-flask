@@ -686,6 +686,11 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
+.link {
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
 @keyframes button-pop {
   0% {
     transform: scale(var(--btn-focus-scale, 0.98));
@@ -712,6 +717,16 @@ html {
   100% {
     background-position-y: 0;
   }
+}
+
+.link:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 @keyframes modal-pop {
@@ -764,4 +779,22 @@ html {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.static {
+  position: static;
+}
+
+.block {
+  display: block;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
