@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         price = request.form["price"]
-        if price is not "":
+        if price != "":
             get_discount = predict_discount(price)
             return render_template("index.html", discount=get_discount, price=price)
         else:
