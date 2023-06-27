@@ -1,0 +1,26 @@
+{
+  "name": "linear-regression-flask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./source/css/input.css -o ./static/style/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev4ult/linear-regression-flask.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev4ult/linear-regression-flask/issues"
+  },
+  "homepage": "https://github.com/dev4ult/linear-regression-flask#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "daisyui": "^3.1.6",
+    "tailwindcss": "^3.3.2"
+  }
+}
