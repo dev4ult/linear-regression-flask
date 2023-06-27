@@ -4,11 +4,6 @@ before create a virtual environment to run the app, you have to activate the loc
 
 ```
 conda activate
-```
-
-if you don't have virtualenv installed, you can type the command below after you activate the local environment
-
-```
 pip install virtualenv
 ```
 
@@ -16,11 +11,6 @@ after installing/already installed the virtualenv, create venv as virtual enviro
 
 ```
 virtualenv venv
-```
-
-activate the venv
-
-```
 source venv/Scripts/activate
 ```
 
