@@ -1,4 +1,4 @@
-cloning application
+### Clone the Application
 
 ```
 git clone https://github.com/dev4ult/linear-regression-flask.git
