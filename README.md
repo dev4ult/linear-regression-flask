@@ -34,7 +34,7 @@ install the library required from requirements.txt
 pip install -r requirements.txt
 ```
 
-## Run Application
+## Run the Application
 
 you are ready to go to run the app
 
