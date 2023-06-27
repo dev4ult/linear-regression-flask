@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./templates/**/*.html'],
   daisyui: {
-    themes: ['business'],
+    themes: ['business', 'retro'],
   },
   theme: {
     extend: {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="business">
+<html lang="en" data-theme="retro">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,16 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/styles.css') }}" />
+    <script src="{{ url_for('static', filename='script/darkMode.js') }}" defer></script>
   </head>
   <body>
     <main class="container mx-auto py-10 font-spacemono max-w-5xl">
-      <nav class="flex justify-between mb-4">
+      <nav class="flex justify-between mb-7">
         <a href="/" class="font-bold text-lg">Regression()</a>
         <div class="flex items-center gap-5">
           <a href="/documentation" class="text-lg">Documentation</a>
           <label class="swap swap-rotate">
             <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" />
+            <input id="darkmode-check" type="checkbox" />
 
             <!-- sun icon -->
             <svg class="swap-on fill-current w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
