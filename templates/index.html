@@ -1,18 +1,10 @@
-{% extends "layout.html" %} {% block page_title %}Homepage{% endblock %} {% block content %}
-
-<div class="flex gap-5">
-  <form action="" method="post" class="p-6 bg-accent rounded w-fit">
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text text-white">Price</span>
-      </label>
-      <input type="number" placeholder="4983" class="input input-bordered w-fit" name="price" />
-    </div>
-    <button type="submit" class="btn btn-neutral mt-2 w-full">Predict Discount</button>
-  </form>
-  <div class="p-6 rounded w-full border-accent border-2">
-    <h2><span class="badge badge-ghost">Price (Input)</span> : {{price}}</h2>
-    <h2><span class="badge badge-ghost">Predicted Discount</span> : {{discount}}</h2>
+{% extends "layout.html" %} {% block content %}
+<div class="flex flex-col gap-5 w-fit">
+  <div id="upload-container" class="px-5 py-16 border-2 border-accent border-dashed w-full text-center">
+    <input type="file" id="upload-file" multiple class="hidden" />
+    <label for="upload-file" class="">Drag or drop file here</label>
   </div>
+  <input type="file" class="file-input file-input-accent w-full max-w-xs" />
 </div>
+<script src="{{ url_for('static', filename='script/uploadFile.js') }}"></script>
 {% endblock %}
