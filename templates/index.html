@@ -1,10 +1,48 @@
 {% extends "layout.html" %} {% block content %}
-<div class="flex flex-col gap-5 w-fit">
-  <div id="upload-container" class="px-5 py-16 border-2 border-accent border-dashed w-full text-center">
-    <input type="file" id="upload-file" multiple class="hidden" />
-    <label for="upload-file" class="">Drag or drop file here</label>
+<div>
+  <div class="flex flex-col items-center justify-center my-10 h-96 relative">
+    <div id="step-1" class="flex justify-center gap-2">
+      <div>
+        <h2 class="mb-2 text-center">Format in .excel or .csv</h2>
+        <div id="upload-container" class="p-10 border-2 border-accent border-dashed w-fit mx-auto text-accent">
+          <div id="drop-file-cmd" class="flex flex-col items-center justify-center gap-2">
+            <input type="file" id="upload-file" multiple class="hidden" />
+            <label for="upload-file">Drag and drop file here</label>
+            <span class="text-secondary">or</span>
+            <label id="browse-file" for="upload-file" class="btn btn-sm btn-accent">Browse file</label>
+          </div>
+          <div id="file-info" class="flex items-center justify-center flex-col">
+            <img id="excel-icon" src="{{ url_for('static', filename='icon/excel.svg') }}" alt="excel icon" class="hidden" />
+            <img id="csv-icon" src="{{ url_for('static', filename='icon/csv.svg') }}" alt="csv icon" class="hidden" />
+            <p id="file-name" class="mt-1 text-lg text-neutral font-semibold"></p>
+          </div>
+        </div>
+        <h2 id="error-file" class="hidden text-error text-right mt-2 text-sm">it has to be .excel or .csv</h2>
+        <button type="button" id="remove-file" class="btn btn-accent w-full mt-4 hidden">remove file</button>
+      </div>
+    </div>
+    <div id="step-2" class="hidden">
+      <h2 class="mb-5">Label / Name the Column</h2>
+      <form id="labeling-form" class="bg-secondary p-5 rounded">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text text-neutral">X Column's name</span>
+          </label>
+          <input type="text" placeholder="Regressor..." class="input input-bordered input-secondary rounded" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text text-neutral">Y Column's name</span>
+          </label>
+          <input type="text" placeholder="Regressand..." class="input input-bordered input-secondary rounded" />
+        </div>
+        <button type="submit" class="btn btn-neutral w-full mt-3 btn-sm">submit</button>
+      </form>
+    </div>
+    <div id="step-3" class="hidden"></div>
+    <button type="button" id="next-btn" class="btn absolute btn-primary bottom-0 right-0" disabled>next</button>
+    <button type="button" id="prev-btn" class="btn absolute btn-primary bottom-0 left-0 hidden">prev</button>
   </div>
-  <input type="file" class="file-input file-input-accent w-full max-w-xs" />
 </div>
 <script src="{{ url_for('static', filename='script/uploadFile.js') }}"></script>
 {% endblock %}

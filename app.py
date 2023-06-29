@@ -16,7 +16,7 @@ def example():
         price = request.form["price"]
         if price != "":
             get_discount = predict_discount(price)
-            return render_template("index.html", discount=get_discount, price=price)
+            return render_template("example.html", discount=get_discount, price=price)
         else:
             return redirect(url_for("example"))
     else:
