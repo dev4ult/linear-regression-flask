@@ -93,28 +93,60 @@ $('#remove-file').click(function (e) {
   hideIcon();
 });
 
+$('#labeling-form').submit(function (e) {
+  e.preventDefault();
+
+  $('#next-btn').removeAttr('disabled');
+});
+
 let step = 1;
 
 function nextToStep2() {
   $('#prev-btn').removeClass('hidden');
+  $('#next-btn').attr('disabled', '');
 
   $('#step-1').addClass('hidden');
   $('#step-2').removeClass('hidden');
 }
 
-$('#next-btn').click(function (e) {
-  $('#next-btn').attr('disabled', '');
-  nextToStep2();
-});
-
 function backToStep1() {
   $('#prev-btn').addClass('hidden');
+  $('#next-btn').removeAttr('disabled');
 
   $('#step-1').removeClass('hidden');
   $('#step-2').addClass('hidden');
 }
 
+function nextToStep3() {
+  $('#next-btn').addClass('hidden');
+
+  $('#step-2').addClass('hidden');
+  $('#step-3').removeClass('hidden');
+}
+
+function backToStep2() {
+  $('#next-btn').removeClass('hidden');
+
+  $('#step-2').removeClass('hidden');
+  $('#step-3').addClass('hidden');
+}
+
+$('#next-btn').click(function (e) {
+  if (step == 1) {
+    nextToStep2();
+    step++;
+  } else if (step == 2) {
+    nextToStep3();
+    step++;
+  }
+});
+
 $('#prev-btn').click(function (e) {
-  $('#next-btn').removeAttr('disabled');
-  backToStep1();
+  if (step == 2) {
+    backToStep1();
+    step--;
+  } else if (step == 3) {
+    backToStep2();
+    step--;
+  }
 });

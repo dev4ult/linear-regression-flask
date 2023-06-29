@@ -4,7 +4,7 @@
     <div id="step-1" class="flex justify-center gap-2">
       <div>
         <h2 class="mb-2 text-center">Format in .excel or .csv</h2>
-        <div id="upload-container" class="p-10 rounded border-2 border-accent border-dashed w-fit mx-auto text-accent">
+        <div id="upload-container" class="p-10 rounded border-2 border-accent border-dashed w-full mx-auto text-accent">
           <div id="drop-file-cmd" class="flex flex-col items-center justify-center gap-2">
             <input type="file" id="upload-file" multiple class="hidden" />
             <label for="upload-file">Drag and drop file here</label>
@@ -23,23 +23,27 @@
     </div>
     <div id="step-2" class="hidden">
       <h2 class="mb-5">Label / Name the Column</h2>
-      <form id="labeling-form" class="bg-secondary p-5 rounded">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text text-neutral">X Column's name</span>
-          </label>
-          <input type="text" placeholder="Regressor..." class="input input-bordered input-secondary rounded" />
+      <form id="labeling-form">
+        <div class="bg-accent p-5 rounded">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text text-neutral">X Column's name</span>
+            </label>
+            <input type="text" placeholder="Regressor..." class="input input-bordered input-accent rounded bg-white" />
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text text-neutral">Y Column's name</span>
+            </label>
+            <input type="text" placeholder="Regressand..." class="input input-bordered input-accent rounded bg-white" />
+          </div>
         </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text text-neutral">Y Column's name</span>
-          </label>
-          <input type="text" placeholder="Regressand..." class="input input-bordered input-secondary rounded" />
-        </div>
-        <button type="submit" class="btn btn-neutral w-full mt-3 btn-sm">submit</button>
+        <button type="submit" class="btn btn-accent w-full mt-4">submit</button>
       </form>
     </div>
-    <div id="step-3" class="hidden"></div>
+    <div id="step-3" class="hidden">
+      <div class="w-full h-40 bg-accent rounded"></div>
+    </div>
     <button type="button" id="next-btn" class="btn absolute btn-primary bottom-0 right-0" disabled>next</button>
     <button type="button" id="prev-btn" class="btn absolute btn-primary bottom-0 left-0 hidden">prev</button>
   </div>
