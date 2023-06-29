@@ -87,8 +87,8 @@ function hideIcon() {
 $('#remove-file').click(function (e) {
   $('#remove-file').addClass('hidden');
   $('#drop-file-cmd').removeClass('hidden');
-  $('#step-2').addClass('hidden');
   $('#file-name').html('');
+  $('#next-btn').attr('disabled', '');
   leaveContainer();
   hideIcon();
 });
