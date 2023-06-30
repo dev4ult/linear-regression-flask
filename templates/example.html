@@ -5,14 +5,14 @@
       <label class="label">
         <span class="label-text text-white badge badge-neutral font-normal">Input</span>
       </label>
-      <input type="number" placeholder="Price..." class="input input-bordered bg-white text-black rounded input-accent w-fit" name="price" />
+      <input type="number" placeholder="Price..." class="input input-bordered bg-white text-black rounded input-accent w-fit" name="price" required />
     </div>
     <button type="submit" class="btn btn-neutral mt-2 w-full">Predict Discount</button>
   </form>
   <div class="p-6 rounded w-full border-accent border-2">
     <h2 class="mb-2 badge badge-accent">Output</h2>
-    <h2>Price : <span id="input-price"></span></h2>
-    <h2>Predicted Discount : <span id="predicted-discount"></span></h2>
+    <h2>Price : <span id="input-price" class="underline"></span></h2>
+    <h2>Predicted Discount : <span id="predicted-discount" class="underline"></span></h2>
   </div>
 </div>
 <script src="{{ url_for('static', filename='script/predictDiscount.js') }}"></script>

@@ -35,15 +35,15 @@
         <label class="label">
           <span class="label-text text-white badge badge-neutral font-normal">Input</span>
         </label>
-        <input type="number" placeholder="{{predictor}}..." class="input input-bordered bg-white text-black rounded input-accent w-fit" name="custom" />
+        <input type="number" id="input-predictor" placeholder="{{predictor}}..." class="input input-bordered bg-white text-black rounded input-accent w-fit" name="custom" required />
       </div>
       <button type="submit" class="btn btn-neutral mt-2 w-full">Predict {{predictand}}</button>
     </form>
     <div class="p-6 mt-5 border-2 border-accent rounded w-full">
       <h2 class="mb-2 badge badge-accent">Output</h2>
-      <h2>Price : <span id="input-price"></span></h2>
-      <h2>Predicted Discount : <span id="predicted-discount"></span></h2>
+      <h2>{{predictor}} : <span id="predictor-value" class="underline"></span></h2>
+      <h2>Predicted {{predictand}} : <span id="predicted-value" class="underline"></span></h2>
     </div>
   </div>
 </div>
-<script src="{{ url_for('static', 'script/predictCustom.js') }}"></script>
+<script src="{{ url_for('static', filename='script/predictCustom.js') }}"></script>

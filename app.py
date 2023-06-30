@@ -1,7 +1,13 @@
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
 from source.regression import predict_discount, predict_custom
-from source.handle_file import allowed_file, get_data, get_extensions, data_length
+from source.handle_file import (
+    allowed_file,
+    get_data,
+    get_extensions,
+    data_length,
+    get_read_pd,
+)
 
 
 app = Flask(__name__)
@@ -13,7 +19,6 @@ def index():
         file = request.files["file-dataset"]
         if file and allowed_file(file.filename):
             data = get_data(file, get_extensions(file.filename))
-            file.save("./" + "ayam.xlsx")
             return jsonify(
                 {
                     "html": render_template(
@@ -50,6 +55,27 @@ def set_final_table():
                 )
             }
         )
+
+
+@app.route("/predict_custom", methods=["POST"])
+def get_predicted_value():
+    if request.method == "POST":
+        switchLane = request.form["switch-lane"]
+        predictor = request.form["predictor-value"]
+
+        file = request.files["file-dataset"]
+        data = get_read_pd(file, get_extensions(file.filename))
+
+        predicted_value = predict_custom(
+            predictor, data.iloc[:, -1:].values, data.iloc[:, 0].values
+        )
+
+        if switchLane == "true":
+            predicted_value = predict_custom(
+                predictor, data.iloc[:, 0:1].values, data.iloc[:, 1].values
+            )
+
+        return jsonify({"predicted_value": predicted_value})
 
 
 @app.route("/example", methods=["GET", "POST"])
