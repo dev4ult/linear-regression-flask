@@ -1,12 +1,23 @@
 from flask import Flask, redirect, url_for, request, render_template
 
 from source.regression import predict_discount
+from source.handle_file import allowed_file, get_data, get_extensions
+
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        file = request.files["file-dataset"]
+
+        if file.filename == "":
+            return render_template("index.html")
+        if file and allowed_file(file.filename):
+            data = get_data(file, get_extensions(file.filename))
+            return render_template("index.html", dataset=data)
+
     return render_template("index.html")
 
 

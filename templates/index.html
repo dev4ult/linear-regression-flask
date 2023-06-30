@@ -2,11 +2,11 @@
 <div>
   <div class="flex flex-col items-center justify-center my-10 h-[30rem] relative">
     <div id="step-1" class="flex justify-center gap-2">
-      <div>
+      <form action="/" method="post" enctype="multipart/form-data">
         <h2 class="mb-2 text-center">Format in .excel or .csv</h2>
-        <div id="upload-container" class="p-10 rounded border-2 border-accent border-dashed w-full mx-auto text-accent">
+        <div id="upload-container" class="p-24 rounded border-2 border-accent border-dashed w-full mx-auto text-accent">
           <div id="drop-file-cmd" class="flex flex-col items-center justify-center gap-2">
-            <input type="file" id="upload-file" multiple class="hidden" />
+            <input type="file" name="file-dataset" id="upload-file" multiple class="hidden" />
             <label for="upload-file">Drag and drop file here</label>
             <span class="text-secondary">or</span>
             <label id="browse-file" for="upload-file" class="btn btn-sm btn-accent">Browse file</label>
@@ -18,24 +18,31 @@
           </div>
         </div>
         <h2 id="error-file" class="hidden text-error text-right mt-2 text-sm">it has to be .excel or .csv</h2>
-        <button type="button" id="remove-file" class="btn btn-accent w-full mt-4 hidden">remove file</button>
-      </div>
+        <div class="flex gap-4 mt-4">
+          <button type="submit" id="submit-file" class="btn btn-accent hidden">use this file</button>
+          <button type="button" id="remove-file" class="btn btn-accent btn-outline hidden">remove file</button>
+        </div>
+      </form>
+      <h2>{{dataset}}</h2>
     </div>
     <div id="step-2" class="hidden">
       <h2 class="mb-5">Label / Name the Column</h2>
       <form id="labeling-form">
-        <div class="bg-accent p-5 rounded">
+        <div class="bg-accent p-5 rounded flex gap-5">
           <div class="form-control">
             <label class="label">
-              <span class="label-text text-neutral">X Column's name</span>
+              <span class="label-text text-neutral">Predictant</span>
             </label>
-            <input type="text" placeholder="Regressor..." class="input input-bordered input-accent rounded bg-white" />
+            <input type="text" placeholder="Y Column's name..." class="input input-bordered text-black input-accent rounded bg-white" />
           </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text text-neutral">Y Column's name</span>
-            </label>
-            <input type="text" placeholder="Regressand..." class="input input-bordered input-accent rounded bg-white" />
+          <div class="text-right">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text text-neutral">Predictor</span>
+              </label>
+              <input type="text" placeholder="X Column's name..." class="input input-bordered text-black input-accent rounded bg-white" />
+            </div>
+            <button type="button" class="btn btn-sm ml-auto mt-2">new predictor +</button>
           </div>
         </div>
         <button type="submit" class="btn btn-accent w-full mt-4">submit</button>

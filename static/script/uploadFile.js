@@ -32,9 +32,11 @@ $('#upload-container').on('dragover', function (e) {
 
 function displayFile(fileName) {
   $('#drop-file-cmd').addClass('hidden');
-  $('#remove-file').removeClass('hidden');
   $('#file-name').html(fileName);
   $('#error-file').addClass('hidden');
+
+  $('#remove-file').removeClass('hidden');
+  $('#submit-file').removeClass('hidden');
 
   $('#next-btn').removeAttr('disabled');
 }
@@ -86,6 +88,8 @@ function hideIcon() {
 
 $('#remove-file').click(function (e) {
   $('#remove-file').addClass('hidden');
+  $('#submit-file').addClass('hidden');
+
   $('#drop-file-cmd').removeClass('hidden');
   $('#file-name').html('');
   $('#next-btn').attr('disabled', '');
