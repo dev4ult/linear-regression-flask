@@ -1,0 +1,49 @@
+<div class="flex gap-5">
+  <table class="table table-md border-x-2 border-accent">
+    <thead>
+      <tr class="border-accent border-y-[1px] text-white rounded bg-accent">
+        <th>No.</th>
+        <th id="predictand-cell">{{predictand}}</th>
+        <th id="predictor-cell">{{predictor}}</th>
+      </tr>
+    </thead>
+    <tbody class="border-accent border-b-[1px]">
+      {% for i in range(3) %}
+      <tr>
+        <td>{{i+1}}</td>
+        <td class="first-col" id="first-col-{{i+1}}">{{dataset[0][i]}}</td>
+        <td class="second-col" id="second-col-{{i+1}}">{{dataset[1][i]}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>-</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+      {% for i in range(datalength - 3 , datalength) %}
+      <tr>
+        <td>{{i+1}}</td>
+        <td class="first-col" id="first-col-{{i+7-datalength}}">{{dataset[0][i]}}</td>
+        <td class="second-col" id="second-col-{{i+7-datalength}}">{{dataset[1][i]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div>
+    <form id="form-predict-custom" method="post" class="p-6 bg-accent rounded w-fit">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text text-white badge badge-neutral font-normal">Input</span>
+        </label>
+        <input type="number" placeholder="{{predictor}}..." class="input input-bordered bg-white text-black rounded input-accent w-fit" name="custom" />
+      </div>
+      <button type="submit" class="btn btn-neutral mt-2 w-full">Predict {{predictand}}</button>
+    </form>
+    <div class="p-6 mt-5 border-2 border-accent rounded w-full">
+      <h2 class="mb-2 badge badge-accent">Output</h2>
+      <h2>Price : <span id="input-price"></span></h2>
+      <h2>Predicted Discount : <span id="predicted-discount"></span></h2>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', 'script/predictCustom.js') }}"></script>

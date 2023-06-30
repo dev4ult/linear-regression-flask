@@ -19,3 +19,13 @@ def predict_discount(price):
     regressor.fit(actual_price, actual_discount)
 
     return regressor.predict(np.array([[price]], dtype=np.float64))[0]
+
+
+def predict_custom(input_predictor, dataset):
+    predictand = dataset[0]
+    predictor = dataset[1]
+
+    regressor = LinearRegression()
+    regressor.fit(predictor, predictand)
+
+    return regressor.predict(np.array([[input_predictor]], dtype=np.float64))[0]

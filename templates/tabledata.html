@@ -1,0 +1,48 @@
+<table class="table table-md">
+  <thead>
+    <tr class="border-accent border-y-[1px] text-white rounded">
+      <th>No.</th>
+      <th id="predictand-cell">
+        <input type="text" id="predictand-name" placeholder="Predictand..." class="input font-medium input-accent text-white input-sm max-w-[10rem] rounded" required />
+      </th>
+      <th id="predictor-cell">
+        <input type="text" id="predictor-name" placeholder="Predictor..." class="input font-medium input-accent text-white input-sm max-w-[10rem] rounded" required />
+      </th>
+    </tr>
+  </thead>
+  <tbody class="border-accent border-b-[1px]">
+    {% for i in range(3) %}
+    <tr>
+      <td>{{i+1}}</td>
+      <td class="first-col" id="first-col-{{i+1}}">{{dataset[0][i]}}</td>
+      <td class="second-col" id="second-col-{{i+1}}">{{dataset[1][i]}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td>-</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    {% for i in range(datalength - 3 , datalength) %}
+    <tr>
+      <td>{{i+1}}</td>
+      <td class="first-col" id="first-col-{{i+7-datalength}}">{{dataset[0][i]}}</td>
+      <td class="second-col" id="second-col-{{i+7-datalength}}">{{dataset[1][i]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot id="switch-lane-row">
+    <tr class="border-accent border-b-[1px]">
+      <td></td>
+      <td class="text-right">
+        <button type="button" class="switch-lane btn btn-sm btn-accent btn-outline">&rarr;</button>
+      </td>
+      <td>
+        <button type="button" class="switch-lane btn btn-sm btn-accent btn-outline">&larr;</button>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<button type="submit" id="submit-btn" class="btn btn-accent w-full mt-4">submit</button>
+<button type="button" id="edit-btn" class="btn btn-accent btn-outline w-full mt-4 hidden">edit</button>
+<script src="{{ url_for('static', filename='script/editData.js') }}"></script>

@@ -17,4 +17,8 @@ def get_data(file, file_format):
     else:
         data = pd.read_csv(file)
 
-    return data.iloc[:, 0:1].values
+    return [data.iloc[:, 0].values, data.iloc[:, 1].values]
+
+
+def data_length(dataset):
+    return len(dataset[0]) if len(dataset[0]) < len(dataset[1]) else len(dataset[1])

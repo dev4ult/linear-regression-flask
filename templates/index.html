@@ -1,15 +1,15 @@
 {% extends "layout.html" %} {% block content %}
 <div>
   <div class="flex flex-col items-center justify-center my-10 h-[30rem] relative">
-    <div id="step-1" class="flex justify-center gap-2">
-      <form action="/" method="post" enctype="multipart/form-data">
-        <h2 class="mb-2 text-center">Format in .excel or .csv</h2>
-        <div id="upload-container" class="p-24 rounded border-2 border-accent border-dashed w-full mx-auto text-accent">
-          <div id="drop-file-cmd" class="flex flex-col items-center justify-center gap-2">
-            <input type="file" name="file-dataset" id="upload-file" multiple class="hidden" />
+    <div id="step-1" class="flex justify-center gap-2 {% if dataset is not undefined %} hidden {% endif %}">
+      <form id="form-file-upload" action="/settable" method="POST" enctype="multipart/form-data">
+        <h2 class="mb-2 text-center">[ Format in .excel or .csv ]</h2>
+        <div id="upload-container" class="p-20 rounded border-2 border-accent border-dashed w-full mx-auto text-accent">
+          <div id="drop-file-cmd" class="flex flex-col items-center justify-center gap-2 text-xl font-medium">
+            <input type="file" name="file-dataset" id="upload-file" class="hidden" />
             <label for="upload-file">Drag and drop file here</label>
             <span class="text-secondary">or</span>
-            <label id="browse-file" for="upload-file" class="btn btn-sm btn-accent">Browse file</label>
+            <label id="browse-file" for="upload-file" class="btn btn-accent">Browse file</label>
           </div>
           <div id="file-info" class="flex items-center justify-center flex-col">
             <img id="excel-icon" src="{{ url_for('static', filename='icon/excel.svg') }}" alt="excel icon" class="hidden" />
@@ -19,41 +19,20 @@
         </div>
         <h2 id="error-file" class="hidden text-error text-right mt-2 text-sm">it has to be .excel or .csv</h2>
         <div class="flex gap-4 mt-4">
-          <button type="submit" id="submit-file" class="btn btn-accent hidden">use this file</button>
+          <button type="button" id="submit-file" class="btn btn-accent hidden">use this file</button>
           <button type="button" id="remove-file" class="btn btn-accent btn-outline hidden">remove file</button>
         </div>
       </form>
-      <h2>{{dataset}}</h2>
     </div>
-    <div id="step-2" class="hidden">
+    <div id="step-2" {% if dataset is undefined %} class="hidden" {% endif %}>
       <h2 class="mb-5">Label / Name the Column</h2>
-      <form id="labeling-form">
-        <div class="bg-accent p-5 rounded flex gap-5">
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text text-neutral">Predictant</span>
-            </label>
-            <input type="text" placeholder="Y Column's name..." class="input input-bordered text-black input-accent rounded bg-white" />
-          </div>
-          <div class="text-right">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text text-neutral">Predictor</span>
-              </label>
-              <input type="text" placeholder="X Column's name..." class="input input-bordered text-black input-accent rounded bg-white" />
-            </div>
-            <button type="button" class="btn btn-sm ml-auto mt-2">new predictor +</button>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-accent w-full mt-4">submit</button>
-      </form>
+      <form id="labeling-form"></form>
     </div>
-    <div id="step-3" class="hidden">
-      <div class="w-full h-40 bg-accent rounded"></div>
-    </div>
+    <div id="step-3" class="hidden"></div>
     <button type="button" id="next-btn" class="btn absolute btn-primary bottom-0 right-0" disabled>next</button>
     <button type="button" id="prev-btn" class="btn absolute btn-primary bottom-0 left-0 hidden">prev</button>
   </div>
 </div>
 <script src="{{ url_for('static', filename='script/uploadFile.js') }}"></script>
+<script src="{{ url_for('static', filename='script/stepChange.js') }}"></script>
 {% endblock %}

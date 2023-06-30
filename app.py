@@ -1,7 +1,7 @@
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-from source.regression import predict_discount
-from source.handle_file import allowed_file, get_data, get_extensions
+from source.regression import predict_discount, predict_custom
+from source.handle_file import allowed_file, get_data, get_extensions, data_length
 
 
 app = Flask(__name__)
@@ -11,14 +11,45 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         file = request.files["file-dataset"]
-
-        if file.filename == "":
-            return render_template("index.html")
         if file and allowed_file(file.filename):
             data = get_data(file, get_extensions(file.filename))
-            return render_template("index.html", dataset=data)
+            file.save("./" + "ayam.xlsx")
+            return jsonify(
+                {
+                    "html": render_template(
+                        "tabledata.html", dataset=data, datalength=data_length(data)
+                    )
+                }
+            )
 
     return render_template("index.html")
+
+
+@app.route("/set_final_table", methods=["POST"])
+def set_final_table():
+    if request.method == "POST":
+        predictand = request.form["predictand"]
+        predictor = request.form["predictor"]
+
+        switchLane = request.form["switch-lane"]
+
+        file = request.files["file-dataset"]
+        data = get_data(file, get_extensions(file.filename))
+
+        if switchLane == "true":
+            data = [data[1], data[0]]
+
+        return jsonify(
+            {
+                "html": render_template(
+                    "outputfinal.html",
+                    dataset=data,
+                    datalength=data_length(data),
+                    predictand=predictand,
+                    predictor=predictor,
+                )
+            }
+        )
 
 
 @app.route("/example", methods=["GET", "POST"])
@@ -27,7 +58,7 @@ def example():
         price = request.form["price"]
         if price != "":
             get_discount = predict_discount(price)
-            return render_template("example.html", discount=get_discount, price=price)
+            return jsonify({"discount": get_discount, "price": price})
         else:
             return redirect(url_for("example"))
     else:
