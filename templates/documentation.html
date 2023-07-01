@@ -1,3 +1,29 @@
 {% extends "layout.html" %} {% block page_title %}Homepage{% endblock %} {% block content %}
-<h2>documentation is not available yet...</h2>
+<div>
+  <h2 class="text-lg font-semibold">Overview</h2>
+  <p>There is a step by step to generate a prediction formula with linear regression. In linear regression we will form a basic linear formula from this equation : <span class="badge badge-accent">Y = A + (B)X</span></p>
+  <div class="p-6 border-2 border-accent rounded w-fit mt-3">
+    <h3 class="badge badge-accent mb-2">Variable Explanation</h3>
+    <p>Y : <span class="">Predictand or a variable that we want to be predicted with.</span></p>
+    <p>A : <span class="">Coefficient in the formula.</span></p>
+    <p>B : <span class="">Interception of the Y (vertical line) at X = 0.</span></p>
+    <p>X : <span class="">Predictor or an independent variable that predict the Y variable.</span></p>
+  </div>
+</div>
+<div id="steps" class="mt-4">
+  <h2 class="text-lg font-semibold">Step by step</h2>
+  <ol class="list-decimal ml-10">
+    <li class="font-medium">Find the coefficent and the interception</li>
+    <p>Formula :</p>
+    <div class="p-4 border-2 rounded border-accent flex gap-3 w-fit">
+      <div>
+        <h4 class="badge badge-accent badge-sm">Coefficient</h4>
+      </div>
+      <div>
+        <h4 class="badge badge-accent badge-sm">Interception</h4>
+      </div>
+    </div>
+  </ol>
+  <table></table>
+</div>
 {% endblock %}

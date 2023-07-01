@@ -1,6 +1,12 @@
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-from source.regression import predict_discount, predict_custom
+from source.regression import (
+    predict_discount,
+    predict_custom,
+    get_mae_discount,
+    get_intercept_n_coef,
+    read_discount_data,
+)
 from source.handle_file import (
     allowed_file,
     get_data,
@@ -52,6 +58,7 @@ def set_final_table():
                     datalength=data_length(data),
                     predictand=predictand,
                     predictor=predictor,
+                    switchrow=switchLane,
                 )
             }
         )
@@ -82,13 +89,24 @@ def get_predicted_value():
 def example():
     if request.method == "POST":
         price = request.form["price"]
-        if price != "":
-            get_discount = predict_discount(price)
-            return jsonify({"discount": get_discount, "price": price})
-        else:
-            return redirect(url_for("example"))
+        get_discount = predict_discount(price)
+        return jsonify({"discount": round(get_discount, 2), "price": price})
     else:
-        return render_template("example.html")
+        data = read_discount_data("Train")
+        intercept, coef = get_intercept_n_coef(
+            data.iloc[:, 0:1].values, data.iloc[:, 1]
+        )
+        mae = get_mae_discount()
+        data = get_data("./source/dataset.xlsx", "xlsx")
+        return render_template(
+            "example.html",
+            coef=round(coef[0], 5),
+            intercept=round(intercept, 2),
+            maepercent=int(round(mae, 2) * 100),
+            mae=round(mae, 2),
+            dataset=data,
+            datalength=data_length(data),
+        )
 
 
 @app.route("/documentation")

@@ -1,5 +1,52 @@
 {% extends "layout.html" %} {% block page_title %}Homepage{% endblock %} {% block content %}
 <div class="flex gap-5">
+  <div>
+    <h2 class="badge badge-accent mb-2">Dataset</h2>
+    <table class="table table-md border-2 border-accent">
+      <thead>
+        <tr class="border-accent text-white rounded">
+          <th>No.</th>
+          <th>Price</th>
+          <th>Discount</th>
+        </tr>
+      </thead>
+      <tbody class="border-accent border-b-[1px]">
+        {% for i in range(3) %}
+        <tr>
+          <td>{{i+1}}</td>
+          <td class="first-col" id="first-col-{{i+1}}">{{dataset[0][i]}}</td>
+          <td class="second-col" id="second-col-{{i+1}}">{{dataset[1][i]}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td>-</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+        {% for i in range(datalength - 3 , datalength) %}
+        <tr>
+          <td>{{i+1}}</td>
+          <td class="first-col" id="first-col-{{i+7-datalength}}">{{dataset[0][i]}}</td>
+          <td class="second-col" id="second-col-{{i+7-datalength}}">{{dataset[1][i]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="p-6 rounded w-full border-accent border-2 relative">
+    <h2 class="badge badge-accent mb-2">Formula</h2>
+    <div class="bg-neutral text-white p-2 rounded w-fit">Y = {{coef}} + ({{intercept}})X</div>
+    <h2 class="mt-4 mb-2 badge badge-accent">Mean Absolute Error</h2>
+    <div class="bg-error p-2 rounded w-fit">MAE = {{mae}}</div>
+    <p class="text-sm absolute bottom-6 left-6">[ <span class="text-error">{{maepercent}}%</span> of error on the prediction ]</p>
+  </div>
+  <div>
+    <h2 class="badge badge-accent mb-2">Scatter Plot</h2>
+    <img src="{{ url_for('static', filename='image/predict-discount-plot.png') }}" class="w-[27rem] min-w-[27rem] rounded" alt="plot" />
+  </div>
+</div>
+<div class="border-dashed border-accent border-2 mt-5"></div>
+<div class="flex gap-5 mt-5">
   <form id="form-predict-discount" method="post" class="p-6 bg-accent rounded w-fit">
     <div class="form-control">
       <label class="label">
